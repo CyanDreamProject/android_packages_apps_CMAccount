@@ -367,9 +367,12 @@ public class SetupWizardActivity extends Activity implements SetupDataCallbacks 
     private void finishSetup() {
         handleWhisperPushRegistration();
 
+        Settings.Global.putInt(getContentResolver(), Settings.Global.DEVICE_PROVISIONED, 1);
+        Settings.Secure.putInt(getContentResolver(), Settings.Secure.USER_SETUP_COMPLETE, 1);
         ((CMAccount)AppGlobals.getInitialApplication()).enableStatusBar();
         Intent intent = new Intent("android.intent.action.MAIN");
         intent.addCategory("android.intent.category.HOME");
+        disableSetupWizards(intent);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | intent.getFlags());
         startActivity(intent);
         finish();
