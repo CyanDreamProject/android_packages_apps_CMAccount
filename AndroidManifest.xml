@@ -75,11 +75,14 @@
             android:excludeFromRecents="true"
             android:immersive="true">
 
-<intent-filter>
-    <action android:name="android.intent.action.VIEW" />
-    <action android:name="android.intent.action.MAIN" />
-    <category android:name="android.intent.category.BROWSABLE" />
-</intent-filter>
+                <intent-filter android:priority="9">
+
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.DEVICE_INITIALIZATION_WIZARD" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".ui.CMAccountActivity"
